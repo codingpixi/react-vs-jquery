@@ -1,18 +1,47 @@
 import React, { Component } from 'react';
+//import React from 'react';
+//import React.Component as Component from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+/*function App () {
+  Component.call(this)
+}
+App.prototype = Object.create(Component.prototype)
+App.prototype.render = function () {
+  return (
+    <div className="....">
+  )
+}*/
 class App extends Component {
+
+  constructor () {
+    super()
+    this.state = {
+      text: ''
+    }
+  }
+
+  handleChange (event) {
+    console.log(event.target.value)
+    console.log(this.state)
+    this.setState({ text: event.target.value })
+  }
+
+  disableCheck () {
+    return this.state.text.length === 0
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="well clearfix">
+        <textarea
+          onChange={this.handleChange.bind(this)}
+          className="form-control"></textarea>
+        <br/>
+        <span>{140 - this.state.text.length}</span>
+        <button className="btn btn-primary pull-right" disabled={this.disableCheck()}>Tweet</button>
+        <p>{this.state.text}</p>//this isnt necessary tyo have as text is repeated
       </div>
     );
   }
