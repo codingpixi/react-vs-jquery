@@ -66,7 +66,7 @@ class App extends Component {
     return (
       <div className="well clearfix">
           { this.overflowAlert() }
-        <textarea className="form-control"></textarea>
+        <textarea className="form-control" onChange={this.handleChange.bind(this)}></textarea>
         <br/>
         <span>{this.remainingCharacters()}</span>
         <button className="btn btn-primary pull-right" disabled={this.state.text.length === 0 && !this.state.photoAdded}>Tweet</button>
@@ -76,6 +76,6 @@ class App extends Component {
       </div>
     );
   }
-}
+};
 
 export default App;
